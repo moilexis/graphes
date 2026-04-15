@@ -1,0 +1,18 @@
+# premier petit graphe pour tester vos programmes
+
+V [0..4]
+
+E 0 1
+E 0 2
+E 0 4
+E 1 0
+E 1 2
+E 2 0
+E 2 1
+E 2 3
+E 2 4
+E 3 2
+E 3 4
+E 4 0
+E 4 2
+E 4 3
