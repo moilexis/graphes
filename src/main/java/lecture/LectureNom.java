@@ -1,6 +1,4 @@
-package lecture;
-
-// Ajouter l'indication du package
+package lecture;// Ajouter l'indication du package
 // et les imports nécessaires
 
 import java.io.File;
@@ -8,7 +6,7 @@ import java.io.FileNotFoundException;
 import modele.Graphe;
 import java.util.*;
 
-public class LectureGraphe {
+public class LectureNom {
     /**
      * La méthode lecture construit puis renvoie un graphe
      * à partir de données contenues dans le fichier reçu en paramètre
@@ -16,7 +14,10 @@ public class LectureGraphe {
      * @return le graphe construit
      */
     public static Graphe lecture (File file) {
+
+        TreeMap<Integer, String> lesNoms = new TreeMap<>();
         TreeMap<Integer, Set<Integer>> lesVoisins = new TreeMap<>();
+
 
         try {
             Scanner scannerLigne = new Scanner(file);
@@ -29,13 +30,11 @@ public class LectureGraphe {
                     scannerToken.next(); //"V"
                     // le token suivant est un intervalle
                     // [0..4] par exemple pour petitgraphe1.txt
-                    String intervalle = scannerToken.next();
-                    String[] minEtMax = intervalle.split("[.\\[\\]]+");
-                    int min = Integer.parseInt(minEtMax[1]);
-                    int max = Integer.parseInt(minEtMax[2]);
-                    for (int i = min; i <= max; i++) {
-                        lesVoisins.put(i, new TreeSet<Integer>());
-                    }
+                    Integer sommet = Integer.valueOf(scannerToken.next());
+                    lesVoisins.put(sommet, new TreeSet<Integer>());
+                    String nom = scannerToken.next();
+                    lesNoms.put(sommet, nom);
+
                 }
 
                 if (ligne.startsWith ("E")){  // ligne arête
@@ -55,6 +54,6 @@ public class LectureGraphe {
                FileNotFoundException exception) {
             System.out.println(exception.getMessage());
         }
-        return new Graphe(file.getName(), lesVoisins);
+        return new Graphe(file.getName(), lesVoisins,lesNoms);
     }
 }

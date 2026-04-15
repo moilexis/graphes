@@ -2,6 +2,7 @@ package client;
 
 import java.io.File;
 import lecture.LectureGraphe;
+import lecture.LectureNom;
 import modele.Graphe;
 
 public class ClientGraphe {
@@ -26,6 +27,7 @@ public class ClientGraphe {
         System.out.println("###############################################################");
         System.out.println(Graphe.cycle(8));
         System.out.println(Graphe.cycle(8).plusCourtChemin(0,4));
+        System.out.println(LectureNom.lecture(new File("graphes_exemples/grands_graphes/copperfield.txt")));
 
     }
 }

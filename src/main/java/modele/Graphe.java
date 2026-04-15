@@ -11,12 +11,18 @@ import static java.lang.Double.POSITIVE_INFINITY;
 public class Graphe {
     private String nomFichier;
     private TreeMap<Integer, Set<Integer>> voisinage ;
-    private TreeMap<Integer, Set<Integer>> nomSommets;
+    private TreeMap<Integer, String> nomSommets;
 
 
     public Graphe(String nom, TreeMap<Integer, Set<Integer>> voisins ){
         nomFichier = nom;
         voisinage = voisins;
+        nomSommets = new TreeMap<Integer, String>();
+    }
+    public Graphe (String nom, TreeMap<Integer, Set<Integer>> voisins, TreeMap<Integer, String> noms ){
+        nomFichier = nom;
+        voisinage = voisins;
+        nomSommets = noms;
     }
     public int ordre (){
         return voisinage.size();
@@ -123,7 +129,8 @@ public class Graphe {
         return nomFichier + "\n"+
                 "ordre : " + this.ordre() + "\n"+
                 "taille : " + this.taille()+ "\n"+
-                "degré min : "+this.degreMinDegreMax().getValue0()+"  |  degré max"+this.degreMinDegreMax().getValue1()+ "\n"+
+                "degré min : "+this.degreMinDegreMax().getValue0()+"  |  degré max"+this.degreMinDegreMax().getValue1()+ "\n nom des sommets"+
+                nomSommets.toString()+ "\n voisinage : "+
                 voisinage.toString();
     }
 }
