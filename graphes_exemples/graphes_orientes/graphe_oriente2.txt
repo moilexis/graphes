@@ -1,0 +1,17 @@
+# Petit graphe pour tester tri topologique
+# parcours en profondeur...
+
+V [1..8]
+
+A 1 7
+A 2 3
+A 4 3
+A 4 8
+A 5 2
+A 5 4
+A 5 6
+A 5 8
+A 6 1
+A 6 4
+A 8 1
+

@@ -1,0 +1,11 @@
+# Petit graphe avec cycle pour tester tri topologique
+# parcours en profondeur...
+
+V [0..5]
+
+A 0 1
+A 0 2
+A 2 3
+A 3 4
+A 4 5
+A 5 2
