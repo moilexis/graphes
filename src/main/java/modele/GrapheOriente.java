@@ -1,10 +1,9 @@
 package modele;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import org.javatuples.Pair;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class GrapheOriente {
     private String nom;
@@ -72,13 +71,36 @@ public class GrapheOriente {
 
     }
     public boolean verifieTopologic (ArrayList<Integer> ordre){
-        if (!(ordre.size() ==voisinsSortants.keySet().size())){
+        if (!(ordre.size() == voisinsSortants.keySet().size())){
             return false;
         }
+        TreeSet<Integer> visites = new TreeSet();
         for (Integer sommet : ordre ){
-            return true;
+            return true ;
         }
         return true;
+    }
+    public Pair<ArrayList<Integer>,ArrayList<Integer>> parcoursEnProfondeur (Integer depart){
+        ArrayList<Integer> prof = new ArrayList<>();
+        Integer courant ;
+        ArrayList<Integer> pile = new ArrayList<>();
+        pile.add(depart);
+        ArrayList<Integer> depilement = new ArrayList<>();
+        while (!pile.isEmpty()){
+            courant = pile.get(0);
+            if (!prof.contains(courant)){
+                prof.add(courant);
+                for (Integer voisin : voisinsSortants.get(courant)){
+                    if (!prof.contains(voisin)){
+                        pile.add(voisin);
+                    }
+                }
+            }
+            pile.remove(0);
+            depilement.add(courant);
+
+        }
+        return new Pair<>(prof,depilement);
     }
     public String toString (){
         String res= "";

@@ -24,6 +24,7 @@ public class ClientGrapheOriente {
          */
         System.out.println(g1.degresEntrants());
         System.out.println(g1.topologicalSort());
+        System.out.println(g1.parcoursEnProfondeur(0));
     }
 
 }
