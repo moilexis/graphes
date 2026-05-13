@@ -37,6 +37,49 @@ public class GrapheOriente {
         }
         return new GrapheOriente("Graphe Complet Oriente", voisins);
     }
+    public Map<Integer,Integer> degresEntrants () {
+        Map<Integer,Integer> degresEntrants = new TreeMap<>();
+        for (Integer sommet : voisinsSortants.keySet()) {
+            degresEntrants.put(sommet, 0);
+        }
+        for  (Integer sommet : voisinsSortants.keySet()) {
+            for (Integer accessible : voisinsSortants.get(sommet)){
+                degresEntrants.put(accessible, degresEntrants.get(accessible)+1);
+            };
+        }
+        return degresEntrants;
+    }
+    public ArrayList<Integer> topologicalSort() {
+        Map<Integer,Integer> degresEntrants = degresEntrants();
+        ArrayList<Integer> liste_topo = new ArrayList<>();
+        //on ajoute à la liste les sommets de degré 0
+        for (Integer sommet : degresEntrants.keySet()) {
+            if (degresEntrants.get(sommet) == 0) {
+                liste_topo.add(sommet);}}
+        ArrayList<Integer> num = new ArrayList<>();
+        while (!liste_topo.isEmpty()) {
+            Integer sommet = liste_topo.get(0);
+            for (Integer voisin : voisinsSortants.get(sommet)) {
+                degresEntrants.put(voisin, degresEntrants.get(voisin)-1);
+                if (degresEntrants.get(voisin) == 0) {
+                    liste_topo.add(voisin);
+                }
+            }
+            num.add(sommet);
+            liste_topo.remove(0);
+        }
+        return num;
+
+    }
+    public boolean verifieTopologic (ArrayList<Integer> ordre){
+        if (!(ordre.size() ==voisinsSortants.keySet().size())){
+            return false;
+        }
+        for (Integer sommet : ordre ){
+            return true;
+        }
+        return true;
+    }
     public String toString (){
         String res= "";
         for (int i : voisinsSortants.keySet() ){

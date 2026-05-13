@@ -9,6 +9,7 @@ public class ClientGrapheOriente {
     public static void main (String args[]) {
         GrapheOriente g1 = LectureGraphe.lectureOriente(new File("graphes_exemples/graphes_orientes/graphe_oriente1.txt"));
         System.out.println(g1);
+        /*
         System.out.println("###############################################################");
         GrapheOriente g2 = LectureGraphe.lectureOriente(new File("graphes_exemples/graphes_orientes/graphe_oriente2.txt"));
         System.out.println(g2);
@@ -20,6 +21,9 @@ public class ClientGrapheOriente {
         System.out.println(g4);
         System.out.println("###############################################################");
 
+         */
+        System.out.println(g1.degresEntrants());
+        System.out.println(g1.topologicalSort());
     }
 
 }
